@@ -1,0 +1,665 @@
+* {
+	margin:0;
+	padding:0;
+}
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+::-webkit-scrollbar {
+ width: 0px;
+ height: 0px;
+}
+::-webkit-scrollbar-thumb {
+ background: none;
+ border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover{
+ background: none;;
+}
+::-webkit-scrollbar-track{
+ background: none;
+ border-radius: 0px;
+}
+* {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+body, html {
+	margin:0;
+	padding:0;
+	font-size:12px;
+	line-height:0.9;
+	font-family:Arial;
+	background-color:#000;
+	color:#fff;
+}
+a {
+	color:#fff;
+	text-decoration:none;
+}
+a:hover {
+	color:#ddd;
+	text-decoration:none;
+}
+h1 {
+	font-size:42px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	margin:10px 10px 10px 10px;
+	padding:0;
+}
+h3 {
+	font-size:35px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	margin:10px 10px 5px 10px;
+	padding:0;
+}
+li h3 {
+	font-size:25px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	margin:5px 0;
+	padding:0;
+}
+p.message {
+	text-align:justify;
+	font-size:12px;
+	margin:10px auto;
+	padding:10px;
+	display:block;
+}
+.frameBG {
+	background-position:center;
+	background-attachment:fixed;
+	overflow:hidden;
+	width:100vw;
+	height:100vh;
+	background-image:url(../configs/bg/bg3.jpg);
+	background-size:120%;
+	background-repeat:no-repeat;
+}
+.frameWrapper {
+	text-align:center;
+	background-color:rgba(0,0,0,0.25);
+}
+.frameContent {
+	display:table-cell;
+	vertical-align:middle;
+	text-align:center;
+	height:100%;
+	width:100%;
+}
+.buttonBack {
+	position:fixed;
+	top:5px;
+	right:5px;
+	display:block;
+	font-size:50px;
+	color:rgba(200,200,200,0.60);
+}
+.loading {
+	display:block;
+	width:60px;
+	height:60px;
+	font-size:60px;
+	position:absolute;
+	left:48%;
+	top:45%;
+}
+ul {
+	list-style:square;
+	padding:10px 10px 10px 25px;
+	margin:20px auto;
+	width:60%;
+}
+ul li {
+	margin:0;
+	padding:3px 0;
+	text-align:justify;
+	font-size:18px;
+	line-height:1;
+}
+ul li small {
+	font-size:14px;
+	display:block;
+	color:#9e9e9e;
+}
+/*
+	Dashboard
+*/
+.dashTopLeft {
+	position:absolute;
+	top:0;
+	left:0;
+	text-align:center;
+	margin:10px;
+	padding:5px;
+}
+.dashTime {
+	display:block;
+	font-size:40px;
+	text-align:center;
+	margin:5px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashDate {
+	display:block;
+	font-size:18px;
+	text-align:center;
+	margin:5px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashWeather {
+	position:absolute;
+	top:0;
+	right:0;
+	margin:10px;
+	padding:5px;
+	text-align:left;
+	white-space:nowrap;
+	float:right;
+}
+.dashWeather .icon {
+	font-size:60px;
+	float:left;
+	margin:0 5px 5px -90px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	display:block;
+}
+.dashWeather .title {
+	font-size:30px;
+	display:block;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashWeather .title small {
+	font-size:25px;
+}
+.dashWeather .details {
+	font-size:20px;
+	display:block;
+}
+.dashWeather .more {
+	font-size:16px;
+	display:block;
+}
+.dashMailbox {
+	position:absolute;
+	left:10px;
+	bottom:10px;
+	text-align:left;
+}
+.dashMailbox .mailEmpty {
+	font-size:40px;
+	display:block;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashMailbox .mailUnread {
+	font-size:30px;
+	display:block;
+	margin:0 0 5px 0;
+}
+.dashMailbox .mailRead {
+	font-size:30px;
+	display:block;
+	margin:0 0 5px 0;
+}
+.dashMailbox .mailRead i,
+.dashMailbox .mailUnread i {
+	margin-right:10px;
+	color:#99f;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashLinks {
+	margin:0 auto;
+	width:60%;
+}
+.dashLink { 
+	display:inline-block;
+	width:100px;
+	height:90px;
+	margin:15px;
+	padding:10px;
+	text-align:center;
+	line-height:1.0;
+	border-radius:6px;
+	background:rgba(255,255,255,0.25);
+}
+.dashLink:hover { 
+	background:rgba(255,255,255,0.75);
+	color:#333;
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashLink i {
+	font-size:48px;
+	display:block;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashLink .text {
+	display:table-cell;
+	vertical-align:middle;
+	text-align:center;
+	font-size:16px;
+	padding:10px 5px 0 5px;
+	height:30px;
+	width:90px;
+	overflow:hidden;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	font-weight:bold;
+}
+/*
+	Mailbox
+*/
+.mailCount {
+	font-size:40px;
+	color:#f05e16;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.mailSubject {
+	color:#00e3eb;
+	font-size:18px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.mailInfo {
+	font-size:12px;
+	color:#9e9e9e;
+}
+/*
+	Camera
+*/
+img.camera {
+	margin:0 auto;
+	height:70vh;
+	display:block;
+	border:2px solid #f2910a;
+	box-shadow:0px 2px 3px rgba(0,0,0,1);
+}
+/*
+	Network
+*/
+.state {
+	display:inline-block;
+	text-transform:uppercase;
+	padding:2px 3px;
+	font-size:12px 
+}
+td .state {
+	display:block;
+}
+table.table {
+	margin:25px auto;
+	width:90%;
+}
+table.table th {
+	font-size:16px;
+	padding:3px 5px 5px 5px;
+	line-height:1;
+}
+table.table th small {
+	font-size:12px;
+	display:block;
+	color:#9e9e9e;
+}
+table.table td {
+	font-size:14px;
+	padding:3px 5px;
+}
+/*
+	Weather
+*/
+.mainWeather h3 {
+	font-size:24px;
+	text-align:center;
+	margin:0 0 5px 0;
+	padding:0;
+}
+.mainWeather h3 small {
+	font-size:18px;
+	text-align:center;
+	display:block;
+}
+.mainWeatherTable {
+	display:block;
+	overflow:auto;
+	width:100%;
+}
+.weatherToday,
+.weatherNextdays {
+	white-space:nowrap;
+	height:180px;
+	width:100%;
+	padding:5px 10px;
+	margin:0 auto;
+	text-align:center;
+	vertical-align:top;
+	display:table-cell;
+	overflow-x:auto;
+	overflow-y:hidden;
+}
+.weatherToday .todayBox,
+.weatherNextdays .nextdayBox {
+	display:inline-table;
+	margin:0 10px;
+	padding:10px;
+	text-align:center;
+	line-height:1.0;
+	border-radius:6px;
+	background:rgba(255,255,255,0.25);
+	width:170px;
+	height:140px;
+	overflow:hidden;
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.weatherNextdays {
+	height:70px;
+}
+.weatherNextdays .nextdayBox {
+	width:160px;
+	height:60px;
+	padding:5px;
+}
+.todayTime {
+	font-size:22px;
+	display:block;
+	text-align:center;
+	margin:5px 5px 10px 5px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayIcon {
+	font-size:30px;
+	display:inline-block;
+	text-align:center;
+	float:left;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayTemp {
+	font-size:24px;
+	display:inline-block;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayFeel {
+	font-size:16px;
+	display:inline-block;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayTempMin {
+	font-size:16px;
+	display:inline-block;
+	text-align:center;
+	margin-right:3px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayTempMax {
+	font-size:16px;
+	display:inline-block;
+	text-align:center;
+	margin-left:3px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayHumidity {
+	font-size:12px;
+	display:inline-block;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayClouds {
+	font-size:12px;
+	display:inline-block;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayWinds {
+	font-size:12px;
+	display:inline-block;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayDetails {
+	font-size:14px;
+	display:block;
+	white-space:normal;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todaySnow,
+.todayRain{
+	font-size:12px;
+	display:block;
+	margin:5px;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+div.weatherRow {
+	display:block;
+	text-align:center;
+	margin:5px auto 0;
+}
+.nextdayTime {
+	font-size:20px;
+	display:block;
+	text-align:center;
+	margin:5px 5px 15px 5px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.nextdayIcon {
+	font-size:50px;
+	display:block;
+	text-align:center;
+	width:60px;
+	float:left;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.nextdayTempMin {
+	font-size:14px;
+	display:block;
+	text-align:left;
+	margin:0 0 3px 0;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.nextdayTempMax {
+	font-size:14px;
+	display:block;
+	text-align:left;
+	margin:0 0 3px 0;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.nextdaySnow,
+.nextdayRain{
+	font-size:14px;
+	display:block;
+	margin:5px;
+	text-align:left;
+	margin:0 0 3px 0;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.calendar {
+	display:table;
+	width:90%;
+	height:90%;
+    border-spacing: 2px;
+    border-collapse: separate;	
+	margin:0 auto;
+}
+.calendar .week {
+	display:table-row;
+}
+.calendar .week .day {
+	display:table-cell;
+	width:12vw;
+	height:10vh;
+	max-width:12vw;
+	max-height:10vh;
+	vertical-align:top;
+	padding:3px;
+	text-align:left;
+	background:rgba(255,255,255,0.25);
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.calendar .week .day.previous,
+.calendar .week .day.next {
+	background:none;
+	box-shadow:none;
+}
+.calendar .week .day .num {
+	float:left;
+	display:inline;
+	font-size:16px;
+	border-radius:0 0 3px 0;
+	background:#000;
+	color:#9e9e9e;
+	padding:2px 3px;
+	margin:-3px 3px 3px -3px;
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	position:relative;
+	z-index:5;
+}
+.calendar .week .day.active .num {
+	background:#f05e16;
+	color:#000;
+	font-weight:bold;
+	font-size:18px;
+}
+.calendar .week .day.active {
+	background:rgba(255,255,255,0.75);
+	color:#000;
+}
+.calendar .daynames {
+	display:table-row;
+}
+.calendar .daynames .dayname {
+	display:table-cell;
+	width:12vw;
+	vertical-align:bottom;
+	text-align:center;
+	padding:5px;
+	font-size:16px;
+	background:rgba(0,0,0,0.75);
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.calendarTitle {
+	display:block;
+	margin:0 auto;
+}
+.calendarTitle .nextMonth,
+.calendarTitle .prevMonth {
+	display:inline-block;
+	padding:3px;
+	font-size:40px;
+}
+.calendarTitle .titleDate {
+	display:inline-block;
+	padding:3px;
+	font-size:24px;
+}
+.calendarTitle .titleDate small {
+	display:block;
+	padding:3px;
+	font-size:18px;
+}
+.calendar .day .notes {
+	width:10vw;
+	height:4vh;
+	display:block;
+	overflow:hidden;
+	padding:0;
+	margin:0 -2vw 0 0; /* fix the cell resizing when active */
+	font-size:10px;
+	white-space:nowrap;
+}
+.calendar .day .notes:hover,
+.calendar .day .notes:active,
+.calendar .day .notes:focus {
+	width:30vw;
+	height:30vh;
+	max-width:36vw;
+	max-height:25vh;
+	padding:10px;
+	margin:-10vh -15vw -30vh -10vw;
+	overflow:auto;
+	color:#fff;
+	background:rgba(0,0,0,0.90);
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	float:left;
+	position:relative;
+	font-size:14px;
+	white-space:normal;
+	z-index:10;
+}
+.calendar .day .notes .title {
+	display:none;
+}
+.calendar .day .notes:hover .title,
+.calendar .day .notes:active .title,
+.calendar .day .notes:focus .title {
+	display:block;
+	font-size:18px;
+	margin-bottom:5px;
+	border-bottom:1px dashed #e9e9e9;
+}
+/*
+	Colors
+*/
+.yellow {
+	color:#ebeb00;
+}
+.blue {
+	color:#00e3eb;
+}
+.red {
+	color:#db4646;
+}
+.grey {
+	color:#9e9e9e;
+}
+.green {
+	color:#32a852;
+}
+.darkblue {
+	color:#0023eb;
+}
+.white {
+	color:#fff;
+}
+.black {
+	color:#000;
+}
+.orange {
+	color:#f05e16;
+}

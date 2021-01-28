@@ -1,0 +1,119 @@
+<?php
+	/***
+		PHP Signage by Mathieu Légaré levelkro@yahoo.ca https://levelkro.com
+		https://github.com/levelKro/PHP-Dashboard
+		
+		Version 	: 1.0
+		Date 		: 28-01-2021
+		
+		Requirement
+		- Web server like Apache
+		- PHP 5.4+ or 7.0+
+		- PHP modules; XMLRPC, IMAP, CURL
+	***/
+	
+	
+<?php
+	// CONFIG FILE
+	
+	// Main configuration
+	$cfg=array(
+		"lang"=>"fr",
+		"dashboard"=>array(
+			"view"=>"dash", // Do not edit, only if you make or install a new dash menu
+			"background"=>"techno1.jpg"
+		),
+		"calendar"=>array(
+			"view"=>"calendar", // Do not edit, When you click the time on dash menu
+			"title"=>"Calendar",
+			"background"=>"techno3.jpg"
+		),
+		"mailbox"=>array(
+			"view"=>"mailbox", // Do not edit, When you click the emails count on dash menu
+			"background"=>"presentation2.jpg",
+			"title"=>"Name of mailbox", // Name of mailbox
+			"host"=>"example.host.com", // IMAP host
+			"port"=>"993", // IMAP port
+			"user"=>"username@email.com", // Username of mailbox
+			"pass"=>"password", // for GMail, use password for apps in Security section; https://myaccount.google.com/apppassword
+			"reorder"=>true // Change the order of emails list
+		),
+		"weather"=>array(
+			"view"=>"weather", // Do not edit, When you click the weather information on dash menu
+			"title"=>"Weather at Montréal",
+			"background"=>"sunset.jpg",
+			"city"=>"montreal,ca", // <city name>,<2 letters country code>
+			"lang"=>"en", // Lang to use, 2 letters code
+			"api"=>"" // API key, got one at https://openweathermap.org/api
+		),
+		"links"=>array( // Menu for dashboard
+			array(
+				"view"=>"list",
+				"background"=>"portal.jpg",
+				"icon"=>"shipping-fast",
+				"title"=>"Orders",
+				"file"=>"list.txt"
+			),
+			array(
+				"view"=>"message",
+				"background"=>"portal.jpg",
+				"icon"=>"sticky-note",
+				"title"=>"Message",
+				"file"=>"msg.txt"
+			),
+			array(
+				"view"=>"rss",
+				"background"=>"portal.jpg",
+				"icon"=>"rss",
+				"title"=>"RSS feed",
+				"url"=>"http://path.domain.net/rss.xml" // Path to RSS XML feed
+			),
+			array(
+				"view"=>"network",
+				"background"=>"techno2.jpg",
+				"icon"=>"network-wired",
+				"title"=>"Local network",
+				"list"=>"network"
+			),
+			array(
+				"view"=>"servers",
+				"background"=>"techno2.jpg",
+				"icon"=>"server",
+				"title"=>"Server and services",
+				"list"=>"servers"
+			),
+			array(
+				"view"=>"camera",
+				"background"=>"warning.jpg",
+				"icon"=>"video",
+				"title"=>"Security Camera",
+				"url"=>"http://path.domain.net/camera.jpg" // URL to Camera stream/image
+			),
+		),
+		"network"=>array( // Network computers list array
+			array(
+				"name"=>"Gateway",
+				"info"=>"Home gateway",
+				"lan"=>"192.168.0.1", // If is wired
+				"wifi"=>"" // If is wireless
+			),
+			array(
+				"name"=>"Computer",
+				"info"=>"My computer",
+				"lan"=>"",
+				"wifi"=>"192.168.0.101"
+			),
+		),
+		"servers"=>Array( // Servers list array
+			array(
+				"ip"=>"8.8.8.8",
+				"name"=>"demo.domain.net",
+				"ports"=>array("dns","http","https","smtp:587")
+			),
+			array(
+				"ip"=>"8.8.4.4",
+				"name"=>"demo2.domain.net",
+				"ports"=>array("dns")
+			)
+		)
+	);
