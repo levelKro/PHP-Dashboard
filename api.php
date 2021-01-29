@@ -68,7 +68,7 @@
 					if(is_numeric($item["rain"]["3h"])) $output['next'][$day]['rain']=($output['next'][$day]['rain']+($item["rain"]["3h"]*1000));
 				}
 			}
-			echo '<h3>'.translateText("TODAY").'<br><small>'.translateDate(date("l, j F",$today["date"])).'</small></h3><div class="mainWeatherTable"><div class="weatherToday">';
+			echo '<h3>'.translateText("TODAY").'<br><small>'.translateDate(date("l, j F",time())).'</small></h3><div class="mainWeatherTable"><div class="weatherToday">';
 			foreach($output['today'] as $today) {
 				echo '<div class="todayBox">
 					<span class="todayTime">'.date("H",$today["date"]).'h00</span>
