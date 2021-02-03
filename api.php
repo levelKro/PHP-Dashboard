@@ -10,19 +10,43 @@
 	if(file_exists("configs/".$cfg['lang'].".lang.php")) require_once("configs/".$cfg['lang'].".lang.php");
 	else require_once("configs/en.lang.php");	
 	switch($_GET['a']){
+		case "poweroff":
+			system('/sbin/shutdown -P now');
+			echo 'Power off...';
+		break;
+		case "reboot":
+			system('/sbin/shutdown -r now');
+			echo 'Rebooting...';
+		break;
 		case "currentWeather";
 			$jsonurl = "http://api.openweathermap.org/data/2.5/weather?q=".$cfg['weather']['city']."&appid=".$cfg['weather']['api']."&lang=".$cfg['lang']."&units=metric";
 			$json = file_get_contents($jsonurl);
 			$weather = json_decode($json);
+			
 			$return['temp'] = round($weather->main->temp,0)."°C";
 			$return['feel'] = round($weather->main->feels_like,0)."°C";
 			$return['min'] = round($weather->main->temp_min,0)."°C";
 			$return['max'] = round($weather->main->temp_max,0)."°C";
 			$return['name'] = $weather->weather[0]->description;
+			if(is_object($weather->snow)){
+				$snow=(array) $weather->snow;
+				if(is_numeric($snow["1h"])) $return['snow']=$snow["1h"];
+			}
+			if(is_object($weather->rain)){
+				$rain=(array) $weather->rain;
+				if(is_numeric($rain["1h"])) $return['rain']=$rain["1h"];			
+			}
+			
+			if(is_object($weather->clouds)){
+				$clouds=(array) $weather->clouds;
+				if(is_numeric($clouds["all"])) $return['clouds']=$clouds["all"];
+			}
 			echo '<span class="icon"><i class="fas fa-'.getWeatherIcon($weather->weather[0]->id).' '.getWeatherColor($weather->weather[0]->id).'"></i></span>';
-			echo '<span class="title">'.$return['temp'].' <small>('.$return['feel'].')</small></span>';
-			echo '<span class="details">'.$return['name'].'</span>';
-			echo '<span class="more"><i class="fas fa-temperature-low blue"></i> '.$return['min'].' <i class="fas fa-temperature-high red"></i> '.$return['max'].'</span>';
+			echo '<span class="title white">'.$return['temp'].' <small>('.$return['feel'].')</small></span>';
+			echo '<span class="details white">'.$return['name'].'</span>';
+			echo '<span class="more white"><i class="fas fa-temperature-low blue"></i> '.$return['min'].' <i class="fas fa-temperature-high orange"></i> '.$return['max'].'</span>';
+			echo '<span class="more white">'.(($return['clouds']>0)?'<i class="fas fa-cloud grey"></i> '.$return['clouds'].'%':'').(($return['snow']>0)?' <i class="fas fa-snowflake white"></i> '.$return['snow'].'cm</span>':'')
+			.(($return['rain']>0)?' <span class="more blue"><i class="fas fa-cloud-rain blue"></i> '.$return['rain'].'mm</span>':'').'</span>';
 			exit;
 		break;
 		case "nextWeather":
@@ -36,10 +60,12 @@
 			$output=array();
 			foreach($list as $item){
 				$item = (array) $item;
-				if($item["snow"]) $item["snow"]=(array) $item["snow"];
-				else $item["snow"]="";
-				if($item["rain"]) $item["rain"]=(array) $item["rain"];
-				else $item["rain"]="";
+				if(is_object($item["snow"])) {
+					$item["snow"]=(array) $item["snow"];
+				}
+				if(is_object($item["rain"])) {
+					$item["rain"]=(array) $item["rain"];
+				}
 				$day=date("j",$item["dt"]);
 				if($i<=4){
 					$output['today'][]=array(
@@ -53,8 +79,8 @@
 						"clouds"=>$item["clouds"]->all.'%',
 						"winds"=>$item["wind"]->speed.'m/s',
 						"details"=>$item["weather"][0]->description,
-						"snow"=>(($item["snow"])?$item["snow"]["3h"]*100:''),
-						"rain"=>(($item["rain"])?$item["rain"]["3h"]*1000:'')
+						"snow"=>(($item["snow"])?$item["snow"]["3h"]:''),
+						"rain"=>(($item["rain"])?$item["rain"]["3h"]:'')
 					);
 					$i++;
 				}
@@ -64,8 +90,8 @@
 					else $output['next'][$day]['code'][0]++;
 					if($item["main"]->temp_min<$output['next'][$day]['min'] || $output['next'][$day]['min']=="") $output['next'][$day]['min']=round($item["main"]->temp_min,1);
 					if($item["main"]->temp_max>$output['next'][$day]['max'] || $output['next'][$day]['max']=="") $output['next'][$day]['max']=round($item["main"]->temp_max,1);
-					if(is_numeric($item["snow"]["3h"])) $output['next'][$day]['snow']=($output['next'][$day]['snow']+($item["snow"]["3h"]*100));
-					if(is_numeric($item["rain"]["3h"])) $output['next'][$day]['rain']=($output['next'][$day]['rain']+($item["rain"]["3h"]*1000));
+					if($item["snow"]["3h"]>0) $output['next'][$day]['snow']=($output['next'][$day]['snow']+($item["snow"]["3h"]));
+					if($item["rain"]["3h"]>0) $output['next'][$day]['rain']=($output['next'][$day]['rain']+($item["rain"]["3h"]));
 				}
 			}
 			echo '<h3>'.translateText("TODAY").'<br><small>'.translateDate(date("l, j F",time())).'</small></h3><div class="mainWeatherTable"><div class="weatherToday">';
@@ -74,19 +100,19 @@
 					<span class="todayTime">'.date("H",$today["date"]).'h00</span>
 					<div class="weatherRow">
 						<span class="todayIcon"><i class="fas fa-'.getWeatherIcon($today['code']).' '.getWeatherColor($today['code']).'"></i></span>
-						<span class="todayTemp">'.$today['temp'].'</span>
+						<span class="todayTemp white">'.$today['temp'].'</span>
 						<span class="todayFeel grey">('.$today['feel'].')</span>
 					</div>
 					<div class="weatherRow">
-						<span class="todayTempMin"><i class="fas fa-temperature-low blue"></i> '.$today['min'].'</span>
-						<span class="todayTempMax"><i class="fas fa-temperature-high red"></i> '.$today['max'].'</span>
+						<span class="todayTempMin white"><i class="fas fa-temperature-low blue"></i> '.$today['min'].'</span>
+						<span class="todayTempMax white"><i class="fas fa-temperature-high orange"></i> '.$today['max'].'</span>
 					</div>
 					<div class="weatherRow">
 						<span class="todayHumidity"><i class="fas fa-tint blue"></i> '.$today['humidity'].'</span>
 						<span class="todayWinds"><i class="fas fa-wind grey"></i> '.$today['winds'].'</span>
 						<span class="todayClouds"><i class="fas fa-cloud grey"></i> '.$today['clouds'].'</span>
 					</div>
-					<span class="todayDetails darkblue">'.$today['details'].'</span>
+					<span class="todayDetails white">'.$today['details'].'</span>
 					'.(($today['snow']>0)?'<span class="todaySnow"><i class="fas fa-snowflake white"></i> '.$today['snow'].'cm</span>':'').'
 					'.(($today['rain']>0)?'<span class="todayRain"><i class="fas fa-cloud-rain blue"></i> '.$today['rain'].'mm</span>':'').'
 				</div>';
@@ -109,10 +135,10 @@
 					<span class="nextdayIcon"><i class="fas fa-'.getWeatherIcon($code).' '.getWeatherColor($code).'"></i></span>
 					<div class="weatherRow">
 						<span class="nextdayTempMin"><i class="fas fa-temperature-low blue"></i>  '.$nextday['min'].'°C</span>
-						<span class="nextdayTempMax"><i class="fas fa-temperature-high red"></i> '.$nextday['max'].'°C</span>
+						<span class="nextdayTempMax"><i class="fas fa-temperature-high orange"></i> '.$nextday['max'].'°C</span>
 					</div>
-					'.(($tnextday['snow']>0)?'<span class="nextdaySnow"><i class="fas fa-snowflake white"></i> '.$tnextday['snow'].'cm</span>':'').'
-					'.(($tnextday['rain']>0)?'<span class="nextdayRain"><i class="fas fa-cloud-rain blue"></i> '.$nextday['rain'].'mm</span>':'').'		
+					'.(($nextday['snow']>0)?'<span class="nextdaySnow"><i class="fas fa-snowflake white"></i> '.$nextday['snow'].'cm</span>':'').'
+					'.(($nextday['rain']>0)?'<span class="nextdayRain"><i class="fas fa-cloud-rain blue"></i> '.$nextday['rain'].'mm</span>':'').'		
 				</div>';
 				
 			}

@@ -12,7 +12,8 @@
 		<div id="date" class="dashDate"></div>
 	</div>
 	<div id="weather" class="dashWeather" onclick="goView(\'weather\');"></div>
-	<div id="mailbox" class="dashMailbox" onclick="goView(\'mailbox\');"></div>';
+	<div id="mailbox" class="dashMailbox" onclick="goView(\'mailbox\');"></div>
+	<div id="controls" class="dashControls"><i class="fas fa-power-off" onclick="getApi(\'controls\',\'poweroff\',\'\');"></i> <i class="fas fa-sync" onclick="getApi(\'controls\',\'reboot\',\'\');"></i></div>';
 ?>
 <script>
 getApi("time","time","");
