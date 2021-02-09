@@ -10,13 +10,25 @@
 	if(file_exists("configs/".$cfg['lang'].".lang.php")) require_once("configs/".$cfg['lang'].".lang.php");
 	else require_once("configs/en.lang.php");	
 	switch($_GET['a']){
+		case 'radio':
+			require_once("inc/sc/shoutcast.php");	
+			$sc=New ShoutCast();
+			
+			$host=$_GET['h'];
+			$port=$_GET['p'];
+			$id=$_GET['id'];
+			if($id<1 || !is_numeric($id)) $id=1;
+			if($port<1 || $port>65535 || !is_numeric($port)) $port=8000;
+			if(empty($host)) echo json_encode(array("error"=>"Invalid host"));
+			else echo json_encode($sc->infos($host,$port,$id,"42758"));		
+		break;
 		case "poweroff":
-			system('/sbin/shutdown -P now');
-			echo 'Power off...';
+			echo 'Power off in 1 minute...';
+			system('/sbin/shutdown -P +1');
 		break;
 		case "reboot":
-			system('/sbin/shutdown -r now');
-			echo 'Rebooting...';
+			echo 'Rebooting in 1 minute...';
+			system('/sbin/shutdown -r +1');
 		break;
 		case "currentWeather";
 			$jsonurl = "http://api.openweathermap.org/data/2.5/weather?q=".$cfg['weather']['city']."&appid=".$cfg['weather']['api']."&lang=".$cfg['lang']."&units=metric";
