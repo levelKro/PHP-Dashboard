@@ -4,81 +4,57 @@ h2#lvk_title {
 #koreRadioPlayer {
 	min-height: 60px;
 	width: 75vw;
-	outline: none;
-	border:1px solid #333;
-	border-radius:10px;
 	padding:0;
-	margin:20px auto 0;
+	margin:20px auto;
 	text-align:center;
-	background-color:#202020;
-	box-shadow:0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.19);	
 	color:#fff;
-	overflow:hidden;
 }
 marquee {
 	height: auto;
 	width: 75vw;
 	outline: none;
-	border:1px solid #333;
-	border-radius:10px 10px 0 0;
 	padding:5px 0;
 	margin:10px auto 0;
-	background-color:#202020;
 	font-size:26px;
-	line-height:0.9;
+	line-height:1.2;
 	color: #fff;
-	/*box-shadow:0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.19);*/
+	box-shadow:0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.19);
 }
-.submarquee {
-	height: auto;
-	width: 75vw;
-	outline: none;
-	border:1px solid #333;
-	border-radius:0 0 10px 10px;
-	padding:5px 0;
+.Users {
+	padding:0;
 	margin:0 auto;
 	text-align:center;
-	background-color:#202020;
-	font-size:20px;
-	color: #6fa7ed;
-	box-shadow:0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.19);	
+	font-size:10px;
+	color: #6fa7ed;	
 }
-.submarquee span {
-	font-size:20px;
-	font-family:Courier;
+.Users span {
 	color: #fff;
 }
-button {
+a.Play,
+a.Pause {
 	display:inline-block;
-	background-color:transparent;
 	margin:10px;
 	padding:0;
-	width:40px;
-	height:40px;
-	overflow:hidden;
 	border:none;
 	cursor:pointer;
-	font-size:36px;
-	color:#fff;
+	font-size:40px;
+	color:#fff;	
+	text-decoration:none;
+	text-shadow:2px 2px 5px #fff;
 }
-button:hover {
-	color:#dedede;
+a.Play:hover,
+a.Pause:hover,
+a.Play:focus,
+a.Pause:focus {
+	color:#333;
+	text-decoration:none;
+	text-shadow:2px 2px 5px #fff;
 }
-.playerDetails {
-	height: auto;
-	width: 75vw;
-	outline: none;
-	border:1px solid #333;
-	border-radius:10px;
+.Time {
+	display:block;
 	padding:10px 0;
-	margin:0 0 0 0;
+	margin:0;
 	text-align:center;
-	background-color:#202020;
-	font-size:22px;
-	color: #6fa7ed;
-	box-shadow:0 8px 10px 0 rgba(255,255,255,0.2);
-}
-.playerDetails span {
 	font-size:30px;
 	color: #fff;
 	font-weight:bold;

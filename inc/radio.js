@@ -42,17 +42,13 @@ function radioLVK(view) {
 	radioLVKCall.send();	
 }	
 document.addEventListener('DOMContentLoaded', function(){
-	var Start_koreRadio = document.getElementById('StartkoreRadio');
+	var Play_koreRadio = document.getElementById('PlaykoreRadio');
 	var Pause_koreRadio = document.getElementById('PausekoreRadio');
-	var Stop_koreRadio = document.getElementById('StopkoreRadio');
-	Start_koreRadio.addEventListener('click', function() {
+	Play_koreRadio.addEventListener('click', function() {
 		korePlayer.load();
 		korePlayer.play();
 	});
 	Pause_koreRadio.addEventListener('click', function() {
-		korePlayer.pause();
-	});
-	Stop_koreRadio.addEventListener('click', function() {
 		korePlayer.pause();
 	});
 });

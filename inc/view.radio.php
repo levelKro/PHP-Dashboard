@@ -9,16 +9,16 @@
 			Your browser does not support the audio element.
 		</audio>
 		<h2 id="lvk_title">Connecting to radio...</h2>
-		<marquee behavior="scroll" direction="left" id="lvk_song">loading...</marquee><div class="submarquee"><span id="lvk_listen_now">0</span>/<span id="lvk_listen_max">0</span> (<span id="lvk_listen_peak">0</span>) onlines</div>
 		<div id="koreRadioPlayer">
-			<div class="playerDetails"><span id="playerTime">00:00:00</span></div>
-			<button class="Start" id="StartkoreRadio"><i class="fas fa-play"></i></button>
-			<button class="Pause" id="PausekoreRadio"><i class="fas fa-pause"></i></button> 
-			<button class="Stop" id="StopkoreRadio"><i class="fas fa-stop"></i></button> 
+			<div class="Users"><span id="lvk_listen_now">0</span>/<span id="lvk_listen_max">0</span> (<span id="lvk_listen_peak">0</span>) onlines</div>
+			<marquee behavior="scroll" direction="left" id="lvk_song">loading...</marquee>
+			<span class="Time" id="playerTime">00:00:00</span>
+			<a class="Play" id="PlaykoreRadio"><i class="fas fa-play"></i></a>
+			<a class="Pause" id="PausekoreRadio"><i class="fas fa-pause"></i></a> 
 		</div>	
-			<input id="radioID" type="hidden" value="'.$view["id"].'"/>
-			<input id="radioHost" type="hidden" value="'.$view["host"].'"/>
-			<input id="radioPort" type="hidden" value="'.$view["port"].'"/>
+		<input id="radioID" type="hidden" value="'.$view["id"].'"/>
+		<input id="radioHost" type="hidden" value="'.$view["host"].'"/>
+		<input id="radioPort" type="hidden" value="'.$view["port"].'"/>
 	</div>
 	<div class="dashTopLeft" onclick="goView(\'calendar\');">
 		<div id="time" class="dashTime"></div>
