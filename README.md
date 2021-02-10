@@ -26,6 +26,7 @@
 - `rss` : Simple RSS reader (last 10 entries)
 - `mailbox` : Read the number of unread/total emails in the inbox of your mailbox
 - `calendar` : Add your schedules and important days into this calendar easy to use and read
+- `radio` : Radio Player, support only Shoutcast v2.x stream
 
 # Next
 - Admin UI for change config file
@@ -34,9 +35,8 @@
 # Usage
 - Upload/copy file into your web directory,
 - Rename `config.php.dist` to `config.php`;
- - You can edit the file or,
- - Browse to the `admin.php` on your web server, default password is `dummy123`, think to change it,
-- Text files and randoms images must be copied into the `datas` directory,
+ - You can edit the file
+ - Text files and randoms images must be copied into the `configs` directory,
 - Customs backgrounds and picture for Image module must be copied into the `configs/bg` directory,
 
 # Copyrights
