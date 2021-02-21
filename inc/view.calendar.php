@@ -104,4 +104,6 @@
 	else { $yn=$y; $mn=($m+1); }
 	$work=getTableMonth($m,$y);
 	echo '<div class="calendarTitle"><a onclick="goView(\'calendar&y='.$yp.'&m='.$mp.'\')" class="prevMonth"><i class="fas fa-chevron-left"></i></a><span class="titleDate">'.translateDate(date("F",$work['unix'])).'<small>'.$work['year'].'</small></span><a onclick="goView(\'calendar&y='.$yn.'&m='.$mn.'\')" class="nextMonth"><i class="fas fa-chevron-right"></i></a></div>';
+	if($cfg['speak']['enable']) speak($cfg['cache'],$view['title']." ".translateDate(date("F",$work['unix']))." ".$work['year'],$cfg['speak']['lang']);
 	pasteTableMonth($work,$today);
+	echo '<link rel="stylesheet" href="inc/calendar.css">';	

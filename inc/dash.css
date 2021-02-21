@@ -1,0 +1,133 @@
+/*
+	Dashboard
+*/
+.dashTopLeft {
+	position:absolute;
+	top:0;
+	left:0;
+	text-align:center;
+	margin:10px;
+	padding:5px;
+}
+.dashTime {
+	display:block;
+	font-size:40px;
+	text-align:center;
+	margin:5px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashDate {
+	display:block;
+	font-size:18px;
+	text-align:center;
+	margin:5px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashControls {
+	position:absolute;
+	bottom:0;
+	right:0;
+	margin:10px;
+	padding:5px;
+	text-align:right;
+	white-space:nowrap;
+	float:right;
+	font-size:30px;
+}
+.dashWeather {
+	position:absolute;
+	top:0;
+	right:0;
+	margin:10px;
+	padding:5px;
+	text-align:left;
+	white-space:nowrap;
+	float:right;
+}
+.dashWeather .icon {
+	font-size:60px;
+	float:left;
+	margin:0 5px 5px -90px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	display:block;
+}
+.dashWeather .title {
+	font-size:30px;
+	display:block;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashWeather .title small {
+	font-size:25px;
+}
+.dashWeather .details {
+	font-size:20px;
+	display:block;
+}
+.dashWeather .more {
+	font-size:16px;
+	display:block;
+}
+.dashMailbox {
+	position:absolute;
+	left:10px;
+	bottom:10px;
+	text-align:left;
+}
+.dashMailbox .mailEmpty {
+	font-size:40px;
+	display:block;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashMailbox .mailUnread {
+	font-size:30px;
+	display:block;
+	margin:0 0 5px 0;
+}
+.dashMailbox .mailRead {
+	font-size:30px;
+	display:block;
+	margin:0 0 5px 0;
+}
+.dashMailbox .mailRead i,
+.dashMailbox .mailUnread i {
+	margin-right:10px;
+	color:#99f;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashLinks {
+	margin:0 auto;
+	width:60%;
+}
+.dashLink { 
+	display:inline-block;
+	width:100px;
+	height:90px;
+	margin:15px;
+	padding:10px;
+	text-align:center;
+	line-height:1.0;
+	border-radius:6px;
+	background:rgba(255,255,255,0.25);
+}
+.dashLink:hover { 
+	background:rgba(255,255,255,0.75);
+	color:#333;
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashLink i {
+	font-size:48px;
+	display:block;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.dashLink .text {
+	display:table-cell;
+	vertical-align:middle;
+	text-align:center;
+	font-size:16px;
+	padding:10px 5px 0 5px;
+	height:30px;
+	width:90px;
+	overflow:hidden;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	font-weight:bold;
+}

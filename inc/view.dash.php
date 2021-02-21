@@ -16,13 +16,14 @@
 	<div id="controls" class="dashControls"><i class="fas fa-power-off" onclick="getApi(\'controls\',\'poweroff\',\'\');"></i> <i class="fas fa-sync" onclick="getApi(\'controls\',\'reboot\',\'\');"></i></div>';
 ?>
 <script>
-getApi("time","time","");
-getApi("date","date","");
-getApi("weather","currentWeather","");
-getApi("mailbox","mail","");
-var myTime=setInterval("getApi('time','time','');",30000);
-var myDate=setInterval("getApi('date','date','');",30000);
-var myWeather=setInterval("getApi('weather','currentWeather','');",900000);
-var myMailbox=setInterval("getApi('mailbox','mail','');",300000);
-document.getElementById("buttonBack").style.display="none";
+	getApi("time","time","");
+	getApi("date","date","");
+	getApi("weather","currentWeather","");
+	getApi("mailbox","mail","");
+	var myTime=setInterval("getApi('time','time','');",30000);
+	var myDate=setInterval("getApi('date','date','');",31000);
+	var myWeather=setInterval("getApi('weather','currentWeather','');",900000);
+	var myMailbox=setInterval("getApi('mailbox','mail','');",301000);
+	document.getElementById("buttonBack").style.display="none";
 </script>
+<link rel="stylesheet" href="inc/dash.css">

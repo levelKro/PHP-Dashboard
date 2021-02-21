@@ -3,8 +3,8 @@
 		PHP Signage by Mathieu Légaré levelkro@yahoo.ca https://levelkro.com
 		https://github.com/levelKro/PHP-Dashboard
 		
-		Version 	: 1.33
-		Date 		: 10-03-2021
+		Version 	: 1.5
+		Date 		: 21-03-2021
 		
 		Requirement
 		- Web server like Apache
@@ -19,6 +19,21 @@
 	// Main configuration
 	$cfg=array(
 		"lang"=>"fr",
+		"cache"=>"/var/www/html/cache/",
+		"speak"=>array(
+			"enable"=>true,
+			"script"=>"/hvar/www/html/talk.sh",
+			"lang"=>"mb-fr1+f5",
+		),
+		"icon"=>array(
+			"enable"=>true,
+			"path"=>"/home/pi/pisys/icon.sh",
+			"remote"=>"transmit_blue",
+			"speak"=>"sound",
+			"save"=>"disk",
+			"poweroff"=>"stop",
+			"reboot"=>"stop"
+		),
 		"dashboard"=>array(
 			"view"=>"dash", // Do not edit, only if you make or install a new dash menu
 			"background"=>"techno1.jpg" // Background of this module

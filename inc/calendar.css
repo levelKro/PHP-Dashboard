@@ -1,0 +1,126 @@
+.calendar {
+	display:table;
+	width:90%;
+	height:90%;
+    border-spacing: 2px;
+    border-collapse: separate;	
+	margin:0 auto;
+}
+.calendar .week {
+	display:table-row;
+}
+.calendar .week .day {
+	display:table-cell;
+	width:12vw;
+	height:10vh;
+	max-width:12vw;
+	max-height:10vh;
+	vertical-align:top;
+	padding:3px;
+	text-align:left;
+	background:rgba(255,255,255,0.25);
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.calendar .week .day.previous,
+.calendar .week .day.next {
+	background:none;
+	box-shadow:none;
+}
+.calendar .week .day .num {
+	float:left;
+	display:inline;
+	font-size:16px;
+	border-radius:0 0 3px 0;
+	background:#000;
+	color:#9e9e9e;
+	padding:2px 3px;
+	margin:-3px 3px 3px -3px;
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	position:relative;
+	z-index:5;
+}
+.calendar .week .day.active .num {
+	background:#f05e16;
+	color:#000;
+	font-weight:bold;
+	font-size:18px;
+}
+.calendar .week .day.active {
+	background:rgba(255,255,255,0.75);
+	color:#000;
+}
+.calendar .daynames {
+	display:table-row;
+}
+.calendar .daynames .dayname {
+	display:table-cell;
+	width:12vw;
+	vertical-align:bottom;
+	text-align:center;
+	padding:5px;
+	font-size:16px;
+	background:rgba(0,0,0,0.75);
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.calendarTitle {
+	display:block;
+	margin:0 auto;
+}
+.calendarTitle .nextMonth,
+.calendarTitle .prevMonth {
+	display:inline-block;
+	padding:3px;
+	font-size:40px;
+}
+.calendarTitle .titleDate {
+	display:inline-block;
+	padding:3px;
+	font-size:24px;
+}
+.calendarTitle .titleDate small {
+	display:block;
+	padding:3px;
+	font-size:18px;
+}
+.calendar .day .notes {
+	width:10vw;
+	height:4vh;
+	display:block;
+	overflow:hidden;
+	padding:0;
+	margin:0 -2vw 0 0; /* fix the cell resizing when active */
+	font-size:10px;
+	white-space:nowrap;
+}
+.calendar .day .notes:hover,
+.calendar .day .notes:active,
+.calendar .day .notes:focus {
+	width:30vw;
+	height:30vh;
+	max-width:36vw;
+	max-height:25vh;
+	padding:10px;
+	margin:-10vh -15vw -30vh -10vw;
+	overflow:auto;
+	color:#fff;
+	background:rgba(0,0,0,0.90);
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+	float:left;
+	position:relative;
+	font-size:14px;
+	white-space:normal;
+	z-index:10;
+}
+.calendar .day .notes .title {
+	display:none;
+}
+.calendar .day .notes:hover .title,
+.calendar .day .notes:active .title,
+.calendar .day .notes:focus .title {
+	display:block;
+	font-size:18px;
+	margin-bottom:5px;
+	border-bottom:1px dashed #e9e9e9;
+}

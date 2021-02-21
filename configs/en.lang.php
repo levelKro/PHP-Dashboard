@@ -29,6 +29,36 @@
 			case 'FORECAST':
 				return "Forecast";
 			break;
+			case 'POWEROFF':
+				return "Shutdown the Dashboard, goodbye!";
+			break;
+			case 'REBOOT':
+				return "Rebooting the Dashboard, I come back shortly!";
+			break;
+			case 'TIME_MIDNIGHT':
+				return "It is currently midnight.";
+			break;
+			case 'TIME_ONEHOUR':
+				return "It is currently one o'clock.";
+			break;
+			case 'TIME_DINER':
+				return "It is currently noon.";
+			break;
+			case 'TIME_CURRENT':
+				return "The time is now %HOUR% o'clock.";
+			break;
+			case 'MAIL_YOUHAVEXNEW':
+				return "You have %UNREAD% new email.";
+			break;
+			case 'TIME_YOUARENOW':
+				return "We made it on";
+			break;
+			case 'MAIL_ERRORGET':
+				return "Impossible to retrieve emails.";
+			break;
+			case 'MAIL_NOMAIL':
+				return "You have no mail.";
+			break;
 			default:
 				return "";
 		}

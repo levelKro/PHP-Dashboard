@@ -13,6 +13,7 @@
 	);
 	$data_items=$datas['channel']['item'];		
 	$data_items=array_reverse($data_items);
+	if($cfg['speak']['enable']) speak($cfg['cache'],$view['title'],$cfg['speak']['lang']);
 	echo '<h1>'.$data_info['title'].'</h1><p class="message">'.$data_info['description'].'</p><ul>';
 	if(!empty($data_items['title'])) {
 		$tmp=$data_items;

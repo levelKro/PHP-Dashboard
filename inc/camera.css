@@ -1,0 +1,10 @@
+/*
+	Camera
+*/
+img.camera {
+	margin:0 auto;
+	height:70vh;
+	display:block;
+	border:2px solid #f2910a;
+	box-shadow:0px 2px 3px rgba(0,0,0,1);
+}

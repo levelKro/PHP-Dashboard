@@ -70,6 +70,36 @@
 			case 'FORECAST':
 				return "Prévisions";
 			break;
+			case 'POWEROFF':
+				return "Fermeture du Dashbord, aurevoir!";
+			break;
+			case 'REBOOT':
+				return "Re-démarrage du Dashbord, à tantôt!";
+			break;
+			case 'TIME_MIDNIGHT':
+				return "Il est actuellement minuit.";
+			break;
+			case 'TIME_ONEHOUR':
+				return "Il est actuellement une heure.";
+			break;
+			case 'TIME_DINER':
+				return "Il est actuellement midi.";
+			break;
+			case 'TIME_CURRENT':
+				return "Il est actuellement %HOUR% heures.";
+			break;
+			case 'MAIL_YOUHAVEXNEW':
+				return "Vous avez %UNREAD% nouveaux courriels.";
+			break;
+			case 'TIME_YOUARENOW':
+				return "Nous sommes rendu le";
+			break;
+			case 'MAIL_ERRORGET':
+				return "Impossible de consulter la boite de courriel.";
+			break;
+			case 'MAIL_NOMAIL':
+				return "Vous avez aucun nouveau message.";
+			break;
 			default:
 				return "";
 		}

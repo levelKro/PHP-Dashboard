@@ -6,6 +6,7 @@
 	$i=0;
 	$scan=array();
 	$s=false;
+	if($cfg['speak']['enable']) speak($cfg['cache'],$view['title'],$cfg['speak']['lang']);
 	echo'<h1>'.$view["title"].'</h1>
 	<table class="table">';
 	foreach($cfg[$view['list']] as $item){
@@ -42,3 +43,4 @@
 	}
 	<?php foreach($scan as $item) {	echo 'getHostState("'.$item['ip'].'","'.$item['name'].'"); '; } ?>
 </script>
+<link rel="stylesheet" href="inc/network.css">

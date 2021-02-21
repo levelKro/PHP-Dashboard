@@ -1,0 +1,30 @@
+/*
+	Network
+*/
+.state {
+	display:inline-block;
+	text-transform:uppercase;
+	padding:2px 3px;
+	font-size:12px 
+}
+td .state {
+	display:block;
+}
+table.table {
+	margin:25px auto;
+	width:90%;
+}
+table.table th {
+	font-size:16px;
+	padding:3px 5px 5px 5px;
+	line-height:1;
+}
+table.table th small {
+	font-size:12px;
+	display:block;
+	color:#9e9e9e;
+}
+table.table td {
+	font-size:14px;
+	padding:3px 5px;
+}

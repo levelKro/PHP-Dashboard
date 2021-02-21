@@ -1,9 +1,9 @@
 <?php
 	// Time module
 	
+	if($cfg['speak']['enable']) speak($cfg['cache'],$view['title'],$cfg['speak']['lang']);
 	echo '<div class="mainWeather"><h1>'.$view['title'].'</h1><div id="forecast"></div></div>';
-
-	?>
+?>
 <script>
 	getApi("forecast","nextWeather","");
 	var myWeather=setInterval("getApi('forecast','nextWeather','');",900000);
@@ -90,3 +90,4 @@
 	goGrabToday(".weatherToday");
 	goGrabNextdays(".weatherNextdays");
 </script>
+<link rel="stylesheet" href="inc/weather.css">

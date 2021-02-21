@@ -101,7 +101,7 @@
 		else{ return $icon;	}
 	}	
 	function getWeatherColor($code,$h=null){
-		if(!is_numeric($h) || $h==null) $h=date("H");
+		if(!is_numeric($h) || $h==null) $h=date("G");
 		elseif($h>24) $h=24;
 		elseif($h<0) $h=0;
 		$colors=array(
@@ -189,4 +189,38 @@
 			"proxy"=>"3128"
 		);	
 		return $services[$service];
+	}
+	/*
+		Ultra mini Database like a Ram for current session
+		This is for manage process on the machine, like speaking, for not made multiple time if more than one client is connected on dashboard UI
+	*/
+	function DBRamInit($cache){
+		$dh=opendir($cache);
+		while (false !== ($filename = readdir($dh))) {
+			if($filename!="." && $filename!=".." && !is_dir($d.$filename)){
+				@unlink($d.$filename);
+			}
+		}		
+	}
+	function DBRamSave($cache,$name,$value){
+		$f=$cache.$name.".dbr";
+		if(file_exists($f) && ($value=="" || $value==false)) unlink($f);
+		else {
+			$fp=fopen($f, 'w+');
+			fwrite($fp,'<?php $value="'.$value.'";');
+			fclose($fp);		
+		}
+	}
+	function DBRamRead($cache,$name){
+		$f=$cache.$name.".dbr";
+		if(file_exists($f))	{
+			include($f);
+			return $value;
+		}
+		else return false;
+	}
+	// Speak
+	function speak($cache,$txt,$lang="en"){
+		$txt=strip_tags(html_entity_decode($txt));
+		$fp = fopen($cache."talk.txt", 'a+'); fwrite($fp, $lang."||".$txt."\r\n");	fclose($fp);
 	}

@@ -27,6 +27,8 @@
 - `mailbox` : Read the number of unread/total emails in the inbox of your mailbox
 - `calendar` : Add your schedules and important days into this calendar easy to use and read
 - `radio` : Radio Player, support only Shoutcast v2.x stream
+- `espeak` : This is not a common module, you need to install the "espeak" programm with the "mbrola" languages pack, usefull under the Raspberry Pi
+- `icon overlay` : This is not a common module, you can add a small icon overlay on the Raspberry Pi screen for some actions. Not sure if compatible on other devices.
 
 # Next
 - Admin UI for change config file

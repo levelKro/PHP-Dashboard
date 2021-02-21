@@ -1,0 +1,169 @@
+/*
+	Weather
+*/
+.mainWeather h3 {
+	font-size:24px;
+	text-align:center;
+	margin:0 0 5px 0;
+	padding:0;
+}
+.mainWeather h3 small {
+	font-size:18px;
+	text-align:center;
+	display:block;
+}
+.mainWeatherTable {
+	display:block;
+	overflow:auto;
+	width:100%;
+}
+.weatherToday,
+.weatherNextdays {
+	white-space:nowrap;
+	height:180px;
+	width:100%;
+	padding:5px 10px;
+	margin:0 auto;
+	text-align:center;
+	vertical-align:top;
+	display:table-cell;
+	overflow-x:auto;
+	overflow-y:hidden;
+}
+.weatherToday .todayBox,
+.weatherNextdays .nextdayBox {
+	display:inline-table;
+	margin:0 10px;
+	padding:10px;
+	text-align:center;
+	line-height:1.0;
+	border-radius:6px;
+	background:rgba(255,255,255,0.25);
+	width:170px;
+	height:140px;
+	overflow:hidden;
+	box-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.weatherNextdays {
+	height:70px;
+}
+.weatherNextdays .nextdayBox {
+	width:160px;
+	height:60px;
+	padding:5px;
+}
+.todayTime {
+	font-size:22px;
+	display:block;
+	text-align:center;
+	margin:5px 5px 10px 5px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayIcon {
+	font-size:30px;
+	display:inline-block;
+	text-align:center;
+	float:left;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayTemp {
+	font-size:24px;
+	display:inline-block;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayFeel {
+	font-size:16px;
+	display:inline-block;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayTempMin {
+	font-size:16px;
+	display:inline-block;
+	text-align:center;
+	margin-right:3px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayTempMax {
+	font-size:16px;
+	display:inline-block;
+	text-align:center;
+	margin-left:3px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayHumidity {
+	font-size:12px;
+	display:inline-block;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayClouds {
+	font-size:12px;
+	display:inline-block;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayWinds {
+	font-size:12px;
+	display:inline-block;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todayDetails {
+	font-size:14px;
+	display:block;
+	white-space:normal;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.todaySnow,
+.todayRain{
+	font-size:12px;
+	display:block;
+	margin:5px;
+	text-align:center;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+div.weatherRow {
+	display:block;
+	text-align:center;
+	margin:5px auto 0;
+}
+.nextdayTime {
+	font-size:20px;
+	display:block;
+	text-align:center;
+	margin:5px 5px 15px 5px;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.nextdayIcon {
+	font-size:50px;
+	display:block;
+	text-align:center;
+	width:60px;
+	float:left;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.nextdayTempMin {
+	font-size:14px;
+	display:block;
+	text-align:left;
+	margin:0 0 3px 0;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.nextdayTempMax {
+	font-size:14px;
+	display:block;
+	text-align:left;
+	margin:0 0 3px 0;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}
+.nextdaySnow,
+.nextdayRain{
+	font-size:14px;
+	display:block;
+	margin:5px;
+	text-align:left;
+	margin:0 0 3px 0;
+	text-shadow:2px 2px 5px rgba(0,0,0,0.75);
+}

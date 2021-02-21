@@ -9,11 +9,19 @@
 	require_once("inc/libs.php");
 	if(file_exists("configs/".$cfg['lang'].".lang.php")) require_once("configs/".$cfg['lang'].".lang.php");
 	else require_once("configs/en.lang.php");	
+	DBRamSave($cfg['cache'],"ping",time());
 	switch($_GET['a']){
+		case 'pitalk':
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 1000 '.$cfg['icon']['save']);
+			if($_GET['m']) {
+				$m=strip_tags(html_entity_decode($_GET['m']));
+				if($cfg['speak']['enable']) speak($cfg['cache'],$m,$cfg['speak']['lang']);	
+			}
+		break;
 		case 'radio':
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 3000 '.$cfg['icon']['remote']);
 			require_once("inc/sc/shoutcast.php");	
 			$sc=New ShoutCast();
-			
 			$host=$_GET['h'];
 			$port=$_GET['p'];
 			$id=$_GET['id'];
@@ -23,18 +31,24 @@
 			else echo json_encode($sc->infos($host,$port,$id,"42758"));		
 		break;
 		case "poweroff":
-			echo 'Power off in 1 minute...';
-			system('/sbin/shutdown -P +1');
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 15000 '.$cfg['icon']['poweroff']);
+			if($cfg['speak']['enable']) speak($cfg['cache'],translateText("POWEROFF"),$cfg['speak']['lang']);
+			echo 'Power off...';
+			sleep(15);
+			system('sudo /sbin/shutdown -P now');
 		break;
 		case "reboot":
-			echo 'Rebooting in 1 minute...';
-			system('/sbin/shutdown -r +1');
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 15000 '.$cfg['icon']['reboot']);
+			if($cfg['speak']['enable']) speak($cfg['cache'],translateText("REBOOT"),$cfg['speak']['lang']);
+			echo 'Rebooting...';
+			sleep(15);			
+			system('sudo /sbin/shutdown -r now');
 		break;
 		case "currentWeather";
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 3000 '.$cfg['icon']['remote']);
 			$jsonurl = "http://api.openweathermap.org/data/2.5/weather?q=".$cfg['weather']['city']."&appid=".$cfg['weather']['api']."&lang=".$cfg['lang']."&units=metric";
 			$json = file_get_contents($jsonurl);
 			$weather = json_decode($json);
-			
 			$return['temp'] = round($weather->main->temp,0)."°C";
 			$return['feel'] = round($weather->main->feels_like,0)."°C";
 			$return['min'] = round($weather->main->temp_min,0)."°C";
@@ -48,7 +62,6 @@
 				$rain=(array) $weather->rain;
 				if(is_numeric($rain["1h"])) $return['rain']=$rain["1h"];			
 			}
-			
 			if(is_object($weather->clouds)){
 				$clouds=(array) $weather->clouds;
 				if(is_numeric($clouds["all"])) $return['clouds']=$clouds["all"];
@@ -62,13 +75,13 @@
 			exit;
 		break;
 		case "nextWeather":
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 3000 '.$cfg['icon']['remote']);
 			$jsonurl = "http://api.openweathermap.org/data/2.5/forecast?q=".$cfg['weather']['city']."&appid=".$cfg['weather']['api']."&lang=".$cfg['lang']."&units=metric";
 			$json = file_get_contents($jsonurl);
 			$weather = (array) json_decode($json);
 			$list=$weather['list'];
 			$i=0;
 			$today=date("j",time());
-			
 			$output=array();
 			foreach($list as $item){
 				$item = (array) $item;
@@ -152,7 +165,6 @@
 					'.(($nextday['snow']>0)?'<span class="nextdaySnow"><i class="fas fa-snowflake white"></i> '.$nextday['snow'].'cm</span>':'').'
 					'.(($nextday['rain']>0)?'<span class="nextdayRain"><i class="fas fa-cloud-rain blue"></i> '.$nextday['rain'].'mm</span>':'').'		
 				</div>';
-				
 			}
 			echo '</div></div>';
 		break;
@@ -166,13 +178,35 @@
 		break;
 		case "time":
 			echo date("H:i",time());
+			if(DBRamRead($cfg['cache'],"time_ding")!=date("H",time()) && date("i",time())=="00"){
+				switch(date("G",time())){
+					case '0':
+					case '00':
+						if($cfg['speak']['enable']) speak($cfg['cache'],translateText("TIME_MIDNIGHT"),$cfg['speak']['lang']);
+					break;
+					case '1':
+						if($cfg['speak']['enable']) speak($cfg['cache'],translateText("TIME_ONEHOUR"),$cfg['speak']['lang']);
+					break;
+					case '12':
+						if($cfg['speak']['enable']) speak($cfg['cache'],translateText("TIME_DINER"),$cfg['speak']['lang']);
+					break;
+					default:
+						if($cfg['speak']['enable']) speak($cfg['cache'],str_replace("%HOUR%",date("G",time()),translateText("TIME_CURRENT")),$cfg['speak']['lang']);
+				}
+			}
+			DBRamSave($cfg['cache'],"time_ding",date("H",time()));
 			exit;
 		break;
 		case "date":
 			echo translateDate(date("l, j F, Y",time()));
+			if(DBRamRead($cfg['cache'],"date_ding")!=date("l, j F, Y",time()) && date("H:i",time())=="00:00"){
+				if($cfg['speak']['enable']) speak($cfg['cache'],translateText("TIME_YOURARENOW")." ".translateDate(date("l, j F, Y",time())).".",$cfg['speak']['lang']);
+			}	
+			DBRamSave($cfg['cache'],"date_ding",date("l, j F, Y",time()));			
 			exit;
 		break;
 		case "mail":
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 3000 '.$cfg['icon']['remote']);
 			$mbox = imap_open('{'.$cfg['mailbox']['host'].':'.$cfg['mailbox']['port'].'/imap/ssl/novalidate-cert}INBOX', $cfg['mailbox']['user'], $cfg['mailbox']['pass']);
 			if(empty($mbox)) {
 				echo "ERROR: ".imap_last_error();
@@ -191,11 +225,16 @@
 				else{
 					if($output['unread']>0){
 						echo ' <span class="mailUnread"><i class="fas fa-envelope"></i>'.$output['unread'].'</span>';
+						// speech
+						if(DBRamRead($cfg['cache'],"newmail")!==false && is_numeric(DBRamRead($cfg['cache'],"newmail"))) $old=DBRamRead($cfg['cache'],"newmail");
+						else $old=0;
+						if($old<$output['unread']) if($cfg['speak']['enable']) speak($cfg['cache'],str_replace("%UNREAD%",($output['unread']-$old),translateText("MAIL_YOUHAVEXNEW")),$cfg['speak']['lang']);
 					}
 					if($output['read']>0){
 						echo ' <span class="mailRead"><i class="fas fa-envelope-open"></i>'.$output['read'].'</span>';
 					}
 				}
+				DBRamSave($cfg['cache'],"newmail",$output['unread']);				
 			}
 			imap_close($mbox);			
 			exit;
