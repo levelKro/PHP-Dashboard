@@ -1,0 +1,194 @@
+/*
+	Styling DashMedia
+*/
+table.dashMedia {
+	width:100wv;
+	height:100hv;
+	max-width:100wv !important;
+	max-height:100hv !important;
+	margin:0;
+	padding:0;
+}
+table.dashMedia td .dashMediaLinks {
+	display:block;
+	padding:0;
+	margin:0;
+	border-right:1px dotted #ddd;
+}
+table.dashMedia td .dashMediaLinks .links {
+	display:block;
+	padding:0;
+	margin:0;
+	text-align:center;
+	overflow-x:hidden;
+	overflow-y:auto;
+	border-bottom:1px dotted #ddd;
+	box-shadow:0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.19);
+}
+table.dashMedia td .dashMediaLinks .controls {
+	display:block;
+	width:100%;
+	padding:5px;
+	margin:0;
+	text-align:center;
+	position:relative;
+	bottom:0;
+	left:0;
+	font-size:34px;
+	height:40px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+table.dashMedia td .dashMediaLinks .controls i {
+	width:30%;
+	color:#aaa;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td .dashMediaLinks .links .link {
+	display:block;
+	max-width:80%;
+	min-height:60px;
+	padding:10px 5px;
+	margin:7px auto;
+	border:1px solid #aaa;
+	text-align:center;
+	font-size:14px;
+	background:rgba(0,0,0,0.6);
+}
+table.dashMedia td .dashMediaLinks .links .link i {
+	display:block;
+	font-size:40px;
+	line-height:44px;
+}
+
+table.dashMedia td #time {
+	font-size:44px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #date {
+	font-size:26px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #radioTime {
+	font-size:26px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #radioTitle {
+	font-size:16px
+}
+table.dashMedia td #radioSong {
+	font-size:16px
+}
+table.dashMedia td #radioPlayerPlay,
+table.dashMedia td #radioPlayerPause {
+	font-size:32px;
+	line-height:40px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #weatherImage {
+	font-size:60px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #weatherTemp {
+	text-align:left;
+	font-size:32px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #weatherFeel {
+	text-align:left;
+	font-size:20px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #weatherCloud {
+	text-align:left;
+	font-size:16px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #weatherTempMax {
+	text-align:left;
+	font-size:16px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #weatherTempMin {
+	text-align:left;
+	font-size:16px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #weatherSnowRain {
+	text-align:left;
+	font-size:16px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #weatherDetails {
+	text-align:center;
+	font-size:16px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td #weatherCloud i,
+table.dashMedia td #weatherTempMax i,
+table.dashMedia td #weatherTempMin i,
+table.dashMedia td #weatherSnowRain i {
+	text-align:center;
+	width:26px;
+}
+table.dashMedia td.mailBoxIcons {
+	text-align:center;
+	font-size:20px;
+	width:32px;
+	background:rgba(0,0,0,0.6);
+}
+table.dashMedia td #mailUnread, 
+table.dashMedia td #mailRead {
+	text-align:center;
+	font-size:32px;
+	margin:10px;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td.mailBoxLatest dl {
+	text-align:left;
+	margin:10px;
+}
+table.dashMedia td.mailBoxLatest dt {
+	text-align:left;
+	font-size:16px;
+	line-height:1.2;
+	text-shadow:2px 2px 5px #000;
+}
+table.dashMedia td.mailBoxLatest dd {
+	text-align:left;
+	font-size:12px;
+	color:#ddd;
+	padding-bottom:5px;
+	margin-bottom:5px;
+	border-bottom:1px dashed #aaa;
+}
+table.dashMedia td.mailBoxLatest {
+	text-align:left;
+	vertical-align:top !important;
+	background:rgba(0,0,0,0.6);
+}
+table.dashMedia td #mailUnreadList {
+	text-align:left;
+	vertical-align:top;
+}
+table.dashMedia td.weatherInfos {
+	text-align:left;
+	vertical-align:top;
+	background:rgba(0,0,0,0.6);
+	padding:10px;
+	line-height:1.3;
+}
+table.dashMedia td.weatherTemp {
+	text-align:left;
+	vertical-align:top;
+	background:rgba(0,0,0,0.6);
+	padding:10px;
+	line-height:1.3;
+}
+table.dashMedia td.weatherImage {
+	text-align:center;
+	vertical-align:middle;
+	background:rgba(0,0,0,0.6);
+	padding:10px;
+	line-height:1.3;
+}

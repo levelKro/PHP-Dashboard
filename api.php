@@ -74,6 +74,32 @@
 			.(($return['rain']>0)?' <span class="more blue"><i class="fas fa-cloud-rain blue"></i> '.$return['rain'].'mm</span>':'').'</span>';
 			exit;
 		break;
+		case "currentWeather2";
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 3000 '.$cfg['icon']['remote']);
+			$jsonurl = "http://api.openweathermap.org/data/2.5/weather?q=".$cfg['weather']['city']."&appid=".$cfg['weather']['api']."&lang=".$cfg['lang']."&units=metric";
+			$json = file_get_contents($jsonurl);
+			$weather = json_decode($json);
+			$return['temp'] = round($weather->main->temp,0)."°C";
+			$return['feel'] = round($weather->main->feels_like,0)."°C";
+			$return['min'] = round($weather->main->temp_min,0)."°C";
+			$return['max'] = round($weather->main->temp_max,0)."°C";
+			$return['name'] = $weather->weather[0]->description;
+			if(is_object($weather->snow)){
+				$snow=(array) $weather->snow;
+				if(is_numeric($snow["1h"])) $return['snow']=$snow["1h"];
+			}
+			if(is_object($weather->rain)){
+				$rain=(array) $weather->rain;
+				if(is_numeric($rain["1h"])) $return['rain']=$rain["1h"];			
+			}
+			if(is_object($weather->clouds)){
+				$clouds=(array) $weather->clouds;
+				if(is_numeric($clouds["all"])) $return['clouds']=$clouds["all"];
+			}
+			$return['image']='<i class="fas fa-'.getWeatherIcon($weather->weather[0]->id).' '.getWeatherColor($weather->weather[0]->id).'"></i>';
+			echo json_encode($return);
+			exit;
+		break;		
 		case "nextWeather":
 			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 3000 '.$cfg['icon']['remote']);
 			$jsonurl = "http://api.openweathermap.org/data/2.5/forecast?q=".$cfg['weather']['city']."&appid=".$cfg['weather']['api']."&lang=".$cfg['lang']."&units=metric";
@@ -237,6 +263,43 @@
 				DBRamSave($cfg['cache'],"newmail",$output['unread']);				
 			}
 			imap_close($mbox);			
+			exit;
+		break;
+		case "mail2":
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 3000 '.$cfg['icon']['remote']);
+			$mbox = imap_open('{'.$cfg['mailbox']['host'].':'.$cfg['mailbox']['port'].'/imap/ssl/novalidate-cert}INBOX', $cfg['mailbox']['user'], $cfg['mailbox']['pass']);
+			if(empty($mbox)) {
+				echo "ERROR: ".imap_last_error();
+			}
+			else {
+				$output=array();
+				$unread=imap_search($mbox, 'UNSEEN');
+				if(empty($unread)) $output["unread"]=0;
+				else $output["unread"]=count($unread);
+				if($mail = imap_check($mbox)) $output["total"]=$mail->Nmsgs;
+				else $output["total"]=0;
+				$output["read"]=($output["total"]-$output["unread"]);
+				if($output['total']==0) {
+					$return=array("total"=>0,"unread"=>0,"read"=>0,"latest"=>array());
+				}
+				else{
+					$return=$output;
+					$return['latest']=array();
+					if($output['unread']>0){
+						foreach($unread as $unread_id) {
+							$overview = imap_fetch_overview($mbox,$unread_id,0);
+							$return['latest'][]=array("date"=>translateDate(date("l, j F, Y - H:i",strtotime($overview[0]->date))),"author"=>str_replace('"','',strip_tags($overview[0]->from)),"subject"=>strip_tags(imap_utf8($overview[0]->subject)));
+						}
+						// speech
+						if(DBRamRead($cfg['cache'],"newmail")!==false && is_numeric(DBRamRead($cfg['cache'],"newmail"))) $old=DBRamRead($cfg['cache'],"newmail");
+						else $old=0;
+						if($old<$output['unread']) if($cfg['speak']['enable']) speak($cfg['cache'],str_replace("%UNREAD%",($output['unread']-$old),translateText("MAIL_YOUHAVEXNEW")),$cfg['speak']['lang']);
+					}
+				}
+				DBRamSave($cfg['cache'],"newmail",$output['unread']);				
+			}
+			imap_close($mbox);	
+			echo json_encode($return);
 			exit;
 		break;
 		default:

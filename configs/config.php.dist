@@ -35,8 +35,11 @@
 			"reboot"=>"stop"
 		),
 		"dashboard"=>array(
-			"view"=>"dash", // Do not edit, only if you make or install a new dash menu
-			"background"=>"techno1.jpg" // Background of this module
+			"view"=>"dashmedia", // "dash" for the original, "dashmedia" for the new
+			"background"=>"techno1.jpg", // Background of this module
+			"host"=>"radio.levelkro.net",  // Host/ip of radio
+			"port"=>8000, // port (8000 is default)
+			"id"=>1 // stream ID (1 is default)			
 		),
 		"calendar"=>array(
 			"view"=>"calendar", // Do not edit, When you click the time on dash menu
