@@ -21,9 +21,9 @@
 	getApi("weather","currentWeather","");
 	getApi("mailbox","mail","");
 	var myTime=setInterval("getApi('time','time','');",30000);
-	var myDate=setInterval("getApi('date','date','');",31000);
+	var myDate=setInterval("getApi('date','date','');",30000);
 	var myWeather=setInterval("getApi('weather','currentWeather','');",900000);
-	var myMailbox=setInterval("getApi('mailbox','mail','');",301000);
+	var myMailbox=setInterval("getApi('mailbox','mail','');",300000);
 	document.getElementById("buttonBack").style.display="none";
 </script>
 <link rel="stylesheet" href="inc/dash.css">

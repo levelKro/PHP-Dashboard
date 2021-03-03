@@ -4,9 +4,7 @@
 	
 	if($cfg['speak']['enable']) {
 		speak($cfg['cache'],$view['title'],$cfg['speak']['lang']);
-		echo "yesy";
 	}
-	else echo "is".$cfg['speak']['enable'];
 	echo '
 	<div class="dashRadio">
 		<audio id="koreplayer">
@@ -42,9 +40,9 @@
 	getApi("weather","currentWeather","");
 	getApi("mailbox","mail","");
 	var myTime=setInterval("getApi('time','time','');",30000);
-	var myDate=setInterval("getApi('date','date','');",31000);
+	var myDate=setInterval("getApi('date','date','');",30000);
 	var myWeather=setInterval("getApi('weather','currentWeather','');",900000);
-	var myMailbox=setInterval("getApi('mailbox','mail','');",301000);
+	var myMailbox=setInterval("getApi('mailbox','mail','');",300000);
 	document.getElementById("buttonBack").style.bottom="5px";
 	document.getElementById("buttonBack").style.top="unset";
 </script>

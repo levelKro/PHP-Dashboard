@@ -25,7 +25,7 @@
 					foreach($unread as $unread_id) {
 						$overview = imap_fetch_overview($mbox,$unread_id,0);
 						echo '<li><marquee class="mailSubject">'.((strlen(imap_utf8($overview[0]->subject))>250)?substr(imap_utf8($overview[0]->subject),0,250).'...':imap_utf8($overview[0]->subject)).'</marquee>
-						<div class="mailInfo"><span class="mailFrom">'.$overview[0]->from.'</span> - <span class="mailDate">'.translateDate(date("l, j F, Y - H:i",strtotime($overview[0]->date))).'</span></div></li>';
+						<div class="mailInfo"><span class="mailFrom">'.str_replace('"','',strip_tags($overview[0]->from)).'</span> - <span class="mailDate">'.translateDate(date("l, j F, Y - H:i",strtotime($overview[0]->date))).'</span></div></li>';
 					}
 					echo '</ul>';
 					if($cfg['speak']['enable']) speak($cfg['cache'],str_replace("%UNREAD%",count($unread),translateText("MAIL_YOUHAVEXNEW")),$cfg['speak']['lang']);
