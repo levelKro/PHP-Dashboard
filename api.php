@@ -44,6 +44,57 @@
 			sleep(15);			
 			system('sudo /sbin/shutdown -r now');
 		break;
+		case "links":
+			foreach($cfg['links'] as $id=>$item){
+				if(!empty($item["file"]) && filesize("configs/".$item["file"])==0) $ok=false;
+				else $ok=true;
+				if($ok==true) echo '<div class="link" onclick="goView('.$id.');"><i class="fas fa-'.$item['icon'].'"></i><span class="text">'.$item['title'].'</span></div>';
+			}		
+			exit;
+		break;
+		case "todayCalendar":
+			$today=array(
+				"day"=>date("j",time()), // date
+				"day_pos"=>date("w",time()), // position in week
+				"day_num"=>date("z",time()), // position in the year
+				"week"=>date("W",time()), // position of the week
+				"month"=>date("n",time()), // month
+				"month_day"=>date("t",time()), // total day in the month
+				"year"=>date("Y",time()), // year
+				"unix"=>time()
+			);	
+			$fileday="configs/calendar/".$today['month']."-".$today['day']."-".$today['year'].".txt";
+			$have=false;
+			if(file_exists($fileday)){
+				$have=true;
+				echo '<ul>';
+				if($file=fopen($fileday,"r")){
+					$i=0;
+					while(!feof($file)) {
+						$line = fgets($file);
+						if($line!="") echo '<li>'.$line.'</li>';
+						$i++;
+					}
+					fclose($file);
+				}				
+			}
+			$fileday="configs/calendar/".$today['month']."-".$today['day'].".txt";
+			if(file_exists($fileday)){
+				if(!$have) echo '<ul>';
+				$have=true;
+				if($file=fopen($fileday,"r")){
+					$i=0;
+					while(!feof($file)) {
+						$line = fgets($file);
+						if($line!="") echo '<li>'.$line.'</li>';
+						$i++;
+					}
+					fclose($file);
+				}				
+			}	
+			if($have) echo '</ul>';			
+			exit;
+		break;
 		case "currentWeather";
 			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 3000 '.$cfg['icon']['remote']);
 			$jsonurl = "http://api.openweathermap.org/data/2.5/weather?q=".$cfg['weather']['city']."&appid=".$cfg['weather']['api']."&lang=".$cfg['lang']."&units=metric";

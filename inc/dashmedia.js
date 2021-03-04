@@ -69,6 +69,11 @@ function weatherUpdate(view) {
 	weatherUpdateCall.open("GET","api.php?a=currentWeather2&r="+Math.random(),true);
 	weatherUpdateCall.send();	
 }
+function randomBall(){
+	var ballArray = ['volleyball-ball','basketball-ball','baseball-ball','futbol',];
+	var randomNumber = Math.floor(Math.random()*ballArray.length);
+	return ballArray[randomNumber];
+}
 function mailboxUpdate(view) {  
 	if (window.XMLHttpRequest) { mailboxUpdateCall=new XMLHttpRequest(); }
 	else { mailboxUpdateCall=new ActiveXObject("Microsoft.XMLHTTP"); }
@@ -80,10 +85,13 @@ function mailboxUpdate(view) {
 				document.getElementById("mailUnread").innerHTML='<i class="fas fa-envelope"></i> '+values.unread;
 				document.getElementById("mailRead").innerHTML='<i class="fas fa-envelope-open"></i> '+values.read;
 				const latest = Object.values(values.latest);
-				if(latest) {
+				if(latest.lenght>=1) {
 					latest.forEach(updateMailList);
 				}
-				else document.getElementById("mailUnreadList").innerHTML+="";
+				else {
+					var mailBox=document.getElementById("mailbox");
+					document.getElementById("mailUnreadList").innerHTML='</dl><marquee direction="down" behavior="alternate" width='+mailBox.getBoundingClientRect().width+' height='+mailBox.getBoundingClientRect().height+' style="display:block;margin:-10px;"><marquee behavior="alternate"><i class="fas fa-'+randomBall()+' myBall"></i></marquee></marquee><dl>';
+				}
 			}
 			else{
 				document.getElementById("mailUnreadList").innerText="error when updating weather";
@@ -164,18 +172,62 @@ function goGrabLinks(myclass) {
 		checkLinks=setTimeout("goGrabLinks('"+myclass+"');",500);
 	}				
 }
+var checkToday="";
+function goGrabToday(myclass) {		
+	const sliderToday = document.querySelector(myclass);
+	if(sliderToday!=null) {			
+		let isDownToday = false;
+		let startXToday;
+		let startYToday;
+		let scrollLeftToday;
+		let scrollTopToday;		
+		sliderToday.addEventListener("mousedown", e => {
+			isDownToday = true;
+			sliderToday.classList.add("active");
+			startXToday = e.pageX - sliderToday.offsetLeft;
+			startYToday = e.pageY - sliderToday.offsetTop;
+			scrollLeftToday = sliderToday.scrollLeft;
+			scrollTopToday = sliderToday.scrollTop;
+		});
+		sliderToday.addEventListener("mouseleave", () => {
+			isDownToday = false;
+			sliderToday.classList.remove("active");
+		});
+		sliderToday.addEventListener("mouseup", () => {
+			isDownToday = false;
+			sliderToday.classList.remove("active");
+		});
+		sliderToday.addEventListener("mousemove", e => {
+			if (!isDownToday) return;
+			e.preventDefault();
+			const xToday = e.pageX - sliderToday.offsetLeft;
+			const yToday = e.pageY - sliderToday.offsetTop;
+			const walkXToday = xToday - startXToday;
+			const walkYToday = yToday - startYToday;
+			sliderToday.scrollLeft = scrollLeftToday - walkXToday;
+			sliderToday.scrollTop = scrollTopToday - walkYToday;
+		});
+	}
+	else {
+		checkToday=setTimeout("goGrabToday('"+myclass+"');",500);
+	}				
+}
 document.getElementById("buttonBack").style.display="none";
 getApi("time","time","");
 getApi("date","date","");
+getApi("links","links","");
 weatherUpdate();
 mailboxUpdate();
 radioPlayer();
+getApi("today","todayCalendar","");
 var myTime=setInterval("getApi('time','time','');",30000);
-var myDate=setInterval("getApi('date','date','');",30000);
-var myWeather=setInterval("weatherUpdate();",900000);
-var myMailbox=setInterval("mailboxUpdate();",300000);
-var radioPlayerUpdate=setInterval("radioPlayer();",60000);
+var myDate=setInterval("getApi('date','date','');",305000);
+var myLinks=setInterval("getApi('links','links','');",60500);
+var myWeather=setInterval("weatherUpdate();",900500);
+var myMailbox=setInterval("mailboxUpdate();",300500);
+var myLinks=setInterval("getApi('today','todayCalendar','');",60500);
+var radioPlayerUpdate=setInterval("radioPlayer();",60500);
 var radioPlayerTimer=setInterval(function(){ document.getElementById("radioTime").innerText=toHumanTime(radioPlayerID.currentTime); if(radioPlayerID.currentTime==0){ playerState("stop"); } else { playerState("play"); } },1000);
 setMaxsize("fix0");
-document.getElementById("fix1").style.height=Math.floor(screen.height-60)+"px";
-document.getElementById("fix1").style.maxHeight=Math.floor(screen.height-60)+"px";
+document.getElementById("links").style.height=Math.floor(screen.height-60)+"px";
+document.getElementById("links").style.maxHeight=Math.floor(screen.height-60)+"px";
