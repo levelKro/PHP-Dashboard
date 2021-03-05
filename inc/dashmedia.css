@@ -85,6 +85,7 @@ table.dashMedia td #radioTime {
 	text-shadow:2px 2px 5px #000;
 	font-family:Digital2, Arial;
 	color:#fab216;
+	letter-spacing:3px;
 }
 table.dashMedia td #radioTitle {
 	font-size:20px;
