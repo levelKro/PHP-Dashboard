@@ -74,6 +74,14 @@ function randomBall(){
 	var randomNumber = Math.floor(Math.random()*ballArray.length);
 	return ballArray[randomNumber];
 }
+function countProperties(obj) {
+    var count = 0;
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            ++count;
+    }
+    return count;
+}
 function mailboxUpdate(view) {  
 	if (window.XMLHttpRequest) { mailboxUpdateCall=new XMLHttpRequest(); }
 	else { mailboxUpdateCall=new ActiveXObject("Microsoft.XMLHTTP"); }
@@ -85,7 +93,8 @@ function mailboxUpdate(view) {
 				document.getElementById("mailUnread").innerHTML='<i class="fas fa-envelope"></i> '+values.unread;
 				document.getElementById("mailRead").innerHTML='<i class="fas fa-envelope-open"></i> '+values.read;
 				const latest = Object.values(values.latest);
-				if(latest.lenght>=1) {
+				if(countProperties(latest)>=1) {
+					document.getElementById("mailUnreadList").innerHTML="";
 					latest.forEach(updateMailList);
 				}
 				else {
@@ -94,7 +103,7 @@ function mailboxUpdate(view) {
 				}
 			}
 			else{
-				document.getElementById("mailUnreadList").innerText="error when updating weather";
+				document.getElementById("mailUnreadList").innerText="error when contacting mailbox";
 			}
 		}
 	}
