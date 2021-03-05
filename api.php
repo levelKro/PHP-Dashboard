@@ -12,7 +12,7 @@
 	DBRamSave($cfg['cache'],"ping",time());
 	switch($_GET['a']){
 		case 'pitalk':
-			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 1000 '.$cfg['icon']['save']);
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 1000 '.$cfg['icon']['save'].' 1');
 			if($_GET['m']) {
 				$m=strip_tags(html_entity_decode($_GET['m']));
 				if($cfg['speak']['enable']) speak($cfg['cache'],$m,$cfg['speak']['lang']);	
@@ -31,14 +31,14 @@
 			else echo json_encode($sc->infos($host,$port,$id,"42758"));		
 		break;
 		case "poweroff":
-			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 15000 '.$cfg['icon']['poweroff']);
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 15000 '.$cfg['icon']['poweroff'].' 3');
 			if($cfg['speak']['enable']) speak($cfg['cache'],translateText("POWEROFF"),$cfg['speak']['lang']);
 			echo 'Power off...';
 			sleep(15);
 			system('sudo /sbin/shutdown -P now');
 		break;
 		case "reboot":
-			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 15000 '.$cfg['icon']['reboot']);
+			if($cfg['icon']['enable']) system($cfg['icon']['path'].' 15000 '.$cfg['icon']['reboot'].' 3');
 			if($cfg['speak']['enable']) speak($cfg['cache'],translateText("REBOOT"),$cfg['speak']['lang']);
 			echo 'Rebooting...';
 			sleep(15);			
