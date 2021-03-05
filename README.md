@@ -29,6 +29,7 @@
 - `radio` : Radio Player, support only Shoutcast v2.x stream
 - `espeak` : This is not a common module, you need to install the "espeak" programm with the "mbrola" languages pack, usefull under the Raspberry Pi
 - `icon overlay` : This is not a common module, you can add a small icon overlay on the Raspberry Pi screen for some actions. Not sure if compatible on other devices.
+- `fonts` : Customs fonts to install and improve the display of the dashboard
 
 # Next
 - Admin UI for change config file
