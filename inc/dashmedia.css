@@ -106,9 +106,9 @@ table.dashMedia td #radioSong {
 table.dashMedia td #radioPlayerPlay,
 table.dashMedia td #radioPlayerPause {
 	font-size:32px;
-	line-height:40px;
 	text-shadow:2px 2px 5px #000;
 	line-height:48px;
+	display:block;
 }
 table.dashMedia td #radioPlayerPlay:hover,
 table.dashMedia td #radioPlayerPause:hover, 
@@ -122,14 +122,14 @@ table.dashMedia td #weatherImage {
 	line-height:0.8;
 }
 table.dashMedia td #weatherTemp {
-	text-align:left;
+	text-align:right;
 	font-size:34px;
 	text-shadow:2px 2px 5px #000;
 	margin-left:12px;
 	white-space:nowrap;
 }
 table.dashMedia td #weatherFeel {
-	text-align:left;
+	text-align:right;
 	font-size:26px;
 	text-shadow:2px 2px 5px #000;
 	margin-left:12px;
@@ -154,7 +154,7 @@ table.dashMedia td #weatherTempMin {
 	text-shadow:2px 2px 5px #000;
 	white-space:nowrap;
 }
-table.dashMedia td #weatherSnowRain {
+table.dashMedia td #weatherRainSnow {
 	text-align:left;
 	font-size:20px;
 	text-shadow:2px 2px 5px #000;
@@ -170,7 +170,7 @@ table.dashMedia td #weatherDetails {
 table.dashMedia td #weatherCloud i,
 table.dashMedia td #weatherTempMax i,
 table.dashMedia td #weatherTempMin i,
-table.dashMedia td #weatherSnowRain i {
+table.dashMedia td #weatherRainSnow i {
 	text-align:center;
 	width:25px;
 }

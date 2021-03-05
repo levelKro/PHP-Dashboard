@@ -26,13 +26,13 @@
 				</td>
 			</tr>
 			<tr>
-				<td width=25% height=20% onclick="goView(\'weather\');" class="weatherImage">
-					<div id="weatherImage"></div>
-					<div id="weatherDetails"></div>
-				</td>
 				<td width=15% height=20% onclick="goView(\'weather\');" class="weatherTemp">
 					<div id="weatherTemp"></div>
 					<div id="weatherFeel"></div>
+				</td>
+				<td width=25% height=20% onclick="goView(\'weather\');" class="weatherImage">
+					<div id="weatherImage"></div>
+					<div id="weatherDetails"></div>
 				</td>
 				<td width=15% height=20% onclick="goView(\'weather\');" class="weatherInfos">
 					<div id="weatherCloud"></div>
@@ -59,7 +59,7 @@
 			</tr>
 		</table>
 		
-		<audio id="radioPlayer">
+		<audio id="radioPlayer" preload="none">
 			<source src="http://'.$view["host"].':'.$view["port"].'/'.$view["id"].'" type="audio/mpeg">
 		</audio>
 	';

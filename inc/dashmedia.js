@@ -114,17 +114,18 @@ function updateMailList(item,index,arr) {
 	document.getElementById("mailUnreadList").innerHTML+='<dt>'+arr[index]['subject']+'</dt><dd><i class="fas fa-calendar-alt"></i> '+arr[index]['date']+' <i class="fas fa-user"></i> '+arr[index]['author']+'</dd>';
 }
 
-function playerState(state){
+function playerState(){
 	var playerRadioPlay = document.getElementById('radioPlayerPlay');
 	var playerRadioPause = document.getElementById('radioPlayerPause');
-	if(state=="play"){
-		playerRadioPlay.style.display="none";
-		playerRadioPause.style.display="block";
-	}
-	else{
+	if(radioPlayerID.paused){
 		playerRadioPause.style.display="none";
 		playerRadioPlay.style.display="block";
 	}
+	else{
+		playerRadioPlay.style.display="none";
+		playerRadioPause.style.display="block";
+	}
+	return radioPlayerID.paused;
 }
 document.addEventListener('DOMContentLoaded', function(){
 	var playerRadioPlay = document.getElementById('radioPlayerPlay');
@@ -132,14 +133,24 @@ document.addEventListener('DOMContentLoaded', function(){
 	playerRadioPlay.addEventListener('click', function() {
 		radioPlayerID.load();
 		radioPlayerID.play();
-		playerRadioPlay.style.display="none";
-		playerRadioPause.style.display="block";
+		playerState();
 	});
 	playerRadioPause.addEventListener('click', function() {
 		radioPlayerID.pause();
-		playerRadioPause.style.display="none";
-		playerRadioPlay.style.display="block";
+		playerState();
 	});
+	radioPlayerID.addEventListener('play', function() {
+		playerState();
+	});
+	radioPlayerID.addEventListener('pause', function() {
+		playerState();
+	});
+	radioPlayerID.addEventListener('ended', function() {
+		playerState();
+	});
+	radioPlayerID.addEventListener('timeupdate', function() {
+		document.getElementById("radioTime").innerText=toHumanTime(radioPlayerID.currentTime);
+	});	
 });
 var checkLinks="";
 function goGrabLinks(myclass) {		
@@ -236,7 +247,6 @@ var myWeather=setInterval("weatherUpdate();",900500);
 var myMailbox=setInterval("mailboxUpdate();",300500);
 var myLinks=setInterval("getApi('today','todayCalendar','');",60500);
 var radioPlayerUpdate=setInterval("radioPlayer();",60500);
-var radioPlayerTimer=setInterval(function(){ document.getElementById("radioTime").innerText=toHumanTime(radioPlayerID.currentTime); if(radioPlayerID.currentTime==0){ playerState("stop"); } else { playerState("play"); } },1000);
 setMaxsize("fix0");
 document.getElementById("links").style.height=Math.floor(screen.height-60)+"px";
 document.getElementById("links").style.maxHeight=Math.floor(screen.height-60)+"px";
