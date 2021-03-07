@@ -137,25 +137,25 @@ table.dashMedia td #weatherFeel {
 	white-space:nowrap;
 }
 table.dashMedia td #weatherCloud {
-	text-align:left;
+	text-align:right;
 	font-size:20px;
 	text-shadow:2px 2px 5px #000;
 	white-space:nowrap;
 }
 table.dashMedia td #weatherTempMax {
-	text-align:left;
+	text-align:right;
 	font-size:20px;
 	text-shadow:2px 2px 5px #000;
 	white-space:nowrap;
 }
 table.dashMedia td #weatherTempMin {
-	text-align:left;
+	text-align:right;
 	font-size:20px;
 	text-shadow:2px 2px 5px #000;
 	white-space:nowrap;
 }
 table.dashMedia td #weatherRainSnow {
-	text-align:left;
+	text-align:right;
 	font-size:20px;
 	text-shadow:2px 2px 5px #000;
 	white-space:nowrap;
@@ -173,6 +173,7 @@ table.dashMedia td #weatherTempMin i,
 table.dashMedia td #weatherRainSnow i {
 	text-align:center;
 	width:25px;
+	float:left;
 }
 table.dashMedia td.mailBoxIcons {
 	text-align:center;
