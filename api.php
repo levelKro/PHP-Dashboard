@@ -339,7 +339,15 @@
 					if($output['unread']>0){
 						foreach($unread as $unread_id) {
 							$overview = imap_fetch_overview($mbox,$unread_id,0);
-							$return['latest'][]=array("date"=>translateDate(date("l, j F, Y - H:i",strtotime($overview[0]->date))),"author"=>str_replace('"','',strip_tags($overview[0]->from)),"subject"=>strip_tags(imap_utf8($overview[0]->subject)));
+							$elements = imap_mime_header_decode($overview[0]->from);
+							$from="";
+							for ($i=0; $i<count($elements); $i++) {
+								$from.=$elements[$i]->text;
+							}							
+							$return['latest'][]=array(
+								"date"=>translateDate(date("l, j F, Y - H:i",strtotime($overview[0]->date))),
+								"author"=>str_replace('"','',strip_tags($from)),
+								"subject"=>strip_tags(imap_utf8($overview[0]->subject)));
 						}
 						// speech
 						if(DBRamRead($cfg['cache'],"newmail")!==false && is_numeric(DBRamRead($cfg['cache'],"newmail"))) $old=DBRamRead($cfg['cache'],"newmail");
